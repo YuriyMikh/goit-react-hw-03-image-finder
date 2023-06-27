@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 import { AppContainer } from './App.styled';
 import { Searchbar } from './Searchbar/Searchbar';
 import { fetchPixabay } from './services/api-pixabay';
