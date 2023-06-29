@@ -2,9 +2,9 @@ import { Component } from 'react';
 import {
   StyledHeader,
   StyledSearchForm,
-  StyledSearchFormButton,
-  StyledSearchFormButtonLabel,
-  StyledSearchFormInput,
+  StyledButton,
+  StyledButtonLabel,
+  StyledInput,
 } from './Searchbar.styled';
 
 export class Searchbar extends Component {
@@ -12,27 +12,27 @@ export class Searchbar extends Component {
     inputValue: '',
   };
 
-  handleChangeQuery = event => {
-    console.log(event.target.value);
+  handleChangeValue = event => {
     this.setState({ inputValue: event.target.value });
   };
 
   handleSubmit = event => {
     event.preventDefault();
     this.props.handleSearchSubmit(this.state.inputValue);
+    this.setState({ inputValue: '' });
   };
 
   render() {
     return (
       <StyledHeader>
-        <StyledSearchForm omnSubmit={this.handleSubmit}>
-          <StyledSearchFormButton type="submit">
-            <StyledSearchFormButtonLabel>Search</StyledSearchFormButtonLabel>
-          </StyledSearchFormButton>
+        <StyledSearchForm onSubmit={this.handleSubmit}>
+          <StyledButton type="submit">
+            <StyledButtonLabel />
+          </StyledButton>
 
-          <StyledSearchFormInput
+          <StyledInput
             type="text"
-            onChange={this.handleChangeQuery}
+            onChange={this.handleChangeValue}
             value={this.inputValue}
             autocomplete="off"
             autoFocus

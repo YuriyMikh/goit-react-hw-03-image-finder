@@ -1,10 +1,9 @@
-export const GalleryImageItem = ( image ) => {
-    console.log(image.webformatURL);
+import { StyledImg, StyledLi } from './ImageGalleryIem.styled';
+
+export const GalleryImageItem = ({ item }) => {
   return (
-    <li
-    // class="gallery-item"
-    >
-      <img src={image.webformatURL} alt="" />
-    </li>
+    <StyledLi>
+      <StyledImg src={item.webformatURL} alt={item.tags} />
+    </StyledLi>
   );
 };
