@@ -26,8 +26,8 @@ export class App extends Component {
         await fetchPixabay(query, page).then(({ hits, totalHits }) => {
           //в state записываем новые значения:
           this.setState(prevState => ({
-            images: [...prevState.images, ...hits], //в массив imsges распыляем фото которые были в prevState плюс которые пришли после fetchPixabay
-            showBtn: page < Math.ceil(totalHits / 12), //если проверка приводит к true - в state в ключ showBtn записывается true. Будет использовано для показа (или не показа) кнопки "Load More"
+            images: [...prevState.images, ...hits], //в массив images распыляем фото которые были в prevState плюс которые пришли после fetchPixabay
+            showBtn: page < Math.ceil(totalHits / 12), //если проверка приводит к true - в state, в ключ showBtn записывается true. Будет использовано для показа (или не показа) кнопки "Load More"
           }));
           if (hits.length === 0) {
             return toast.info(
@@ -60,7 +60,7 @@ export class App extends Component {
     });
   };
 
-  //при нажатии на "Load more" прибавляем +1 страничку для последуюзей загрузки фото
+  //при нажатии на "Load more" прибавляем +1 страничку для последующей загрузки фото
   handleClickLoadMore = () => {
     this.setState(prevState => ({ page: prevState.page + 1 }));
   };

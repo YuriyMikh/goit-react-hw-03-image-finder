@@ -12,14 +12,16 @@ export class Searchbar extends Component {
     inputValue: '',
   };
 
+  //записываем в state то что вводит пользователь в поисковой строке
   handleChangeValue = event => {
     this.setState({ inputValue: event.target.value });
   };
 
+  //передаем в App.jsx результат поиска
   handleSubmit = event => {
     event.preventDefault();
     this.props.handleSearchSubmit(this.state.inputValue);
-    this.setState({ inputValue: '' });
+    // this.setState({ inputValue: '' }); //можно очищать строку поиска при сабмите
   };
 
   render() {
@@ -33,7 +35,7 @@ export class Searchbar extends Component {
           <StyledInput
             type="text"
             onChange={this.handleChangeValue}
-            value={this.inputValue}
+            value={this.state.inputValue}
             autocomplete="off"
             autoFocus
             placeholder="Search images and photos"
