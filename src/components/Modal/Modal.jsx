@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { Component } from 'react';
 import { StyledDivModal, StyledDivOverlay } from './Modal.styles';
 
@@ -29,6 +30,7 @@ export class Modal extends Component {
 
   render() {
     const { src, alt } = this.props;
+
     return (
       <StyledDivOverlay onClick={this.handleClickOverlay}>
         <StyledDivModal>
@@ -38,3 +40,8 @@ export class Modal extends Component {
     );
   }
 }
+
+Modal.propTypes = {
+  src: PropTypes.string.isRequired,
+  alt: PropTypes.string,
+};
