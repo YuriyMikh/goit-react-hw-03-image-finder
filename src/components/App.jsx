@@ -24,16 +24,18 @@ export class App extends Component {
       try {
         //при запросе деструктуризируем hits и totalHits
         await fetchPixabay(query, page).then(({ hits, totalHits }) => {
-          //в state записываем новые значения:
-          this.setState(prevState => ({
-            images: [...prevState.images, ...hits], //в массив images распыляем фото которые были в prevState плюс которые пришли после fetchPixabay
-            showBtn: page < Math.ceil(totalHits / 12), //если проверка приводит к true - в state, в ключ showBtn записывается true. Будет использовано для показа (или не показа) кнопки "Load More"
-          }));
+          
           if (hits.length === 0) {
             return toast.info(
               'Sorry, there are no images matching your search query. Please try again.'
             );
           }
+
+          //в state записываем новые значения:
+          this.setState(prevState => ({
+            images: [...prevState.images, ...hits], //в массив images распыляем фото которые были в prevState плюс которые пришли после fetchPixabay
+            showBtn: page < Math.ceil(totalHits / 12), //если проверка приводит к true - в state, в ключ showBtn записывается true. Будет использовано для показа (или не показа) кнопки "Load More"
+          }));
         });
       } catch (error) {
         toast.error(
