@@ -1,9 +1,15 @@
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { Component } from 'react';
 import { StyledImg, StyledLi } from './ImageGalleryIem.styled';
 import { Modal } from 'components/Modal/Modal';
 
 export class GalleryImageItem extends Component {
+  static defaultProps = {
+    webformatURL: '',
+    tags: '',
+    largeImageURL: '',
+  };
+
   state = {
     showModal: false,
   };
@@ -14,7 +20,7 @@ export class GalleryImageItem extends Component {
   };
 
   render() {
-    const { webformatURL, tags, largeImageURL } = this.props.item; //деструктуризируем полученные пропсы
+    const { webformatURL, tags, largeImageURL } = this.props.item; //получаем объект item, деструктуризируем свойства объекта
 
     return (
       <StyledLi>
@@ -27,8 +33,10 @@ export class GalleryImageItem extends Component {
   }
 }
 
-// GalleryImageItem.propTypes = {
-//   webformatURL: PropTypes.string.isRequired,
-//   tags: PropTypes.string.isRequired,
-//   largeImageURL: PropTypes.string.isRequired,
-// };
+GalleryImageItem.propTypes = {
+  item: PropTypes.shape({
+    webformatURL: PropTypes.string.isRequired,
+    tags: PropTypes.string,
+    largeImageURL: PropTypes.string.isRequired,
+  }).isRequired,
+};
