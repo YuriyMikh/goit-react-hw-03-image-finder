@@ -4,13 +4,16 @@ import { StyledImg, StyledLi } from './ImageGalleryIem.styled';
 import { Modal } from 'components/Modal/Modal';
 
 export class GalleryImageItem extends Component {
-  static defaultProps = {
-    webformatURL: '',
-    tags: '',
-    largeImageURL: '',
+  //в классовом компоненте пропсы проверяются через static, записываются сразу после объявления класса, а не под классом (как в функциональных компонентах)
+  static propTypes = {
+    item: PropTypes.shape({
+      webformatURL: PropTypes.string.isRequired,
+      tags: PropTypes.string,
+      largeImageURL: PropTypes.string.isRequired,
+    }).isRequired,
   };
 
-  state = {
+    state = {
     showModal: false,
   };
 
@@ -32,11 +35,3 @@ export class GalleryImageItem extends Component {
     );
   }
 }
-
-GalleryImageItem.propTypes = {
-  item: PropTypes.shape({
-    webformatURL: PropTypes.string.isRequired,
-    tags: PropTypes.string,
-    largeImageURL: PropTypes.string.isRequired,
-  }).isRequired,
-};
